@@ -1,8 +1,8 @@
-package test.java.com.capitalone.checkwordster;
+package test.java.com.deinersoft.checkwordster;
 
-import test.java.com.capitalone.checkwordster.client.CheckWordsterClient;
-import com.capitalone.checkwordster.core.CheckWordster;
-import com.capitalone.checkwordster.core.CheckWordsterException;
+import test.java.com.deinersoft.checkwordster.client.CheckWordsterClient;
+import com.deinersoft.checkwordster.core.CheckWordster;
+import com.deinersoft.checkwordster.core.CheckWordsterException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

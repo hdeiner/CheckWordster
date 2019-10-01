@@ -1,7 +1,7 @@
-package test.java.com.capitalone.checkwordster.core;
+package test.java.com.deinersoft.checkwordster.core;
 
-import com.capitalone.checkwordster.core.CheckWordster;
-import com.capitalone.checkwordster.core.CheckWordsterException;
+import com.deinersoft.checkwordster.core.CheckWordster;
+import com.deinersoft.checkwordster.core.CheckWordsterException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

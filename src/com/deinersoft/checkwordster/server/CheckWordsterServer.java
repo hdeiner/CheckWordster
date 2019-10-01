@@ -1,6 +1,6 @@
-package com.capitalone.checkwordster.server;
+package com.deinersoft.checkwordster.server;
 
-import com.capitalone.checkwordster.core.CheckWordster;
+import com.deinersoft.checkwordster.core.CheckWordster;
 import org.json.JSONObject;
 
 import static spark.Spark.port;

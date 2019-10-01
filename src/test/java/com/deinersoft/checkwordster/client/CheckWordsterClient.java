@@ -1,6 +1,6 @@
-package test.java.com.capitalone.checkwordster.client;
+package test.java.com.deinersoft.checkwordster.client;
 
-import com.capitalone.checkwordster.server.CheckWordsterServer;
+import com.deinersoft.checkwordster.server.CheckWordsterServer;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.common.SingleRootFileSource;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
@@ -38,7 +38,8 @@ public class CheckWordsterClient {
             }
             serverRuntime = Runtime.getRuntime().exec(execString);
             Thread.sleep(1000);
-        } else if (whichServer.equals("fake")) {
+        }
+        if (whichServer.equals("fake")) {
             WireMockConfiguration wireMockConfiguration = new WireMockConfiguration();
             wireMockConfiguration.port(9000);
             wireMockConfiguration.browserProxyingEnabled();
@@ -49,15 +50,26 @@ public class CheckWordsterClient {
 
             wireMockServer.start();
         }
+        if (whichServer.equals("wiremock-container")) {
+            String execString = "docker-compose up -d";
+            serverRuntime = Runtime.getRuntime().exec(execString);
+            Thread.sleep(10000);
+        }
+
     }
 
     public Process getServerRunTime() {
         return serverRuntime;
     }
 
-    public void stopServer() throws InterruptedException {
+    public void stopServer() throws Exception {
         if (whichServer.equals("fake")) wireMockServer.stop();
         if (whichServer.equals("local")) serverRuntime.destroyForcibly();
+        if (whichServer.equals("wiremock-container")) {
+            String execString = "docker-compose down";
+            serverRuntime = Runtime.getRuntime().exec(execString);
+            Thread.sleep(1000);
+        }
     }
 
     public String getWords(String numberInDigits) throws Exception {
@@ -68,6 +80,7 @@ public class CheckWordsterClient {
 
         if (whichServer.equals("fake")) url = new URL("http://localhost:9000/checkWordster");
         if (whichServer.equals("local")) url = new URL("http://localhost:9090/checkWordster");
+        if (whichServer.equals("wiremock-container")) url = new URL("http://localhost:9999/checkWordster");
 
         uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
         String requestToPost = "{\"numberInDigits\": \"" + numberInDigits + "\"}";

@@ -1,4 +1,4 @@
-package test.java.com.capitalone.checkwordster;
+package test.java.com.deinersoft.checkwordster;
 
 import org.junit.runner.RunWith;
 
@@ -11,9 +11,9 @@ import cucumber.api.CucumberOptions;
 //      dryRun   = false,
 //      strict = true,
 //      tags     = "",
-        monochrome = false,
-        features = { "src/test/java/com/capitalone/checkwordster/resources/features" },
-        glue     = { "test.java.com.capitalone.checkwordster" },
+        monochrome = true,
+        features = { "src/test/java/com/deinersoft/checkwordster/resources/features" },
+        glue     = { "test.java.com.deinersoft.checkwordster" },
         plugin   = { "pretty", "html:target/cucumber-reports/cucumber-html-report", "json:target/cucumber-reports/cucumber-json-report.json" }
 )
 
