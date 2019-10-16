@@ -12,7 +12,7 @@ public class CheckWordsterServer {
 
     public static void main(String[] args) {
 
-        port(9090);
+        port(9002);
         post("/checkWordster", (request, response) -> {
             if (request.body().equals("STOP")) stop();
             JSONObject obj = new JSONObject(request.body());

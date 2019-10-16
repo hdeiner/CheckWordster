@@ -79,8 +79,8 @@ public class CheckWordsterClient {
         URI uri;
 
         if (whichServer.equals("fake")) url = new URL("http://0.0.0.0:9000/checkWordster");
-        if (whichServer.equals("local")) url = new URL("http://0.0.0.0:9090/checkWordster");
-        if (whichServer.equals("wiremock-container")) url = new URL("http://0.0.0.0:9999/checkWordster");
+        if (whichServer.equals("wiremock-container")) url = new URL("http://0.0.0.0:9001/checkWordster");
+        if (whichServer.equals("local")) url = new URL("http://0.0.0.0:9002/checkWordster");
 
         uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
         String requestToPost = "{\"numberInDigits\": \"" + numberInDigits + "\"}";
