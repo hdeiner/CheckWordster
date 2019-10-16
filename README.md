@@ -7,3 +7,8 @@ This project is about building microservices and properly testing them.
   - One method is to control the jar directly in the c=test code, which is great for Java development.
   - The other method demonstrated is to run WireMock inside a Docker Container, which will work on all systems and with all languages.
 - And, finally, the same Gherkin tests are run against a locally hosted server.
+
+The project is easy to run.  Either use the IDE to compile and then run the tests, or use Maven:
+```bash
+mvn clean compile test
+```
