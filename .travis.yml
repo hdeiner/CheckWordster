@@ -5,4 +5,6 @@ jdk:
 services:
   - docker
 script:
+  - docker-compose up -d
+  - docker-compose down
   - mvn clean compile test
