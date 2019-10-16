@@ -1,0 +1,6 @@
+language: java
+services:
+  - docker
+script:
+  - jdk_switcher use oraclejdk8
+  - mvn clean build test
