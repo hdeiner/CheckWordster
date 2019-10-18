@@ -11,4 +11,4 @@ echo "remote execution: chmod +x /home/ubuntu/provision.sh"
 bolt command run 'chmod +x /home/ubuntu/provision.sh' --nodes $CHECKWORDSTER_DNS --user 'ubuntu' --no-host-key-check
 
 echo "remote execution: /home/ubuntu/provision.sh"
-bolt command run '\/home/ubuntu/provision.sh' --nodes $CHECKWORDSTER_DNS --user 'ubuntu' --no-host-key-check
+bolt command run '/home/ubuntu/provision.sh' --nodes $CHECKWORDSTER_DNS --user 'ubuntu' --no-host-key-check
