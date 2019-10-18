@@ -1,3 +1,4 @@
+Build Status at travis-ci.com<BR/>
 [![Build Status](https://travis-ci.com/hdeiner/CheckWordster.svg?branch=master)](https://travis-ci.com/hdeiner/CheckWordster)
 
 This project is about building microservices and properly testing them.
