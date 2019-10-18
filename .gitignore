@@ -18,6 +18,7 @@
 log/
 target/
 .mvn
+dependency-reduced-pom.xml
 
 # Terraform
 .terraform/
