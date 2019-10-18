@@ -97,8 +97,8 @@ public class CheckWordsterClient {
         if (whichServer.equals("local")) url = new URL("http://0.0.0.0:9002/checkWordster");
 
         if (whichServer.equals("AWS")) {
-            String nancy_dns = new String(Files.readAllBytes(Paths.get(".nancy_dns")));
-            url = new URL("http://" + nancy_dns.trim() + "/checkWordster");
+            String checkwordster_dns = new String(Files.readAllBytes(Paths.get(".checkwordster_dns")));
+            url = new URL("http://" + checkwordster_dns.trim() + "/checkWordster");
         }
 
         uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());

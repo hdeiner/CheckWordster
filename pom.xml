@@ -118,7 +118,7 @@
                 </dependencies>
                 <executions>
                     <execution>
-                        <id>execution</id>
+                        <id>execution_no_aws</id>
                         <phase>test</phase>
                         <goals>
                             <goal>generate</goal>
@@ -130,24 +130,8 @@
                             <skippedFails>false</skippedFails>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>2.4.0</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.googlecode.totallylazy</groupId>
-                        <artifactId>totallylazy</artifactId>
-                        <version>1.84</version>
-                        <scope>system</scope>
-                        <systemPath>${project.basedir}/target/dependency-jars/totallylazy-1.84.jar</systemPath>
-                    </dependency>
-                </dependencies>
-                <executions>
                     <execution>
-                        <id>execution</id>
+                        <id>execution_aws</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
@@ -187,7 +171,6 @@
                         <include>**/RunTestsAWS.java</include>
                     </includes>
                 </configuration>
-
                 <executions>
                     <execution>
                         <goals>

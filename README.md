@@ -20,9 +20,9 @@ The uberjar produced by the package target in maven needs to be run on an AWS EC
 
 We then do integration testing on an  AWS EC2 instance.
 ```bash
-./step_1_dockerize_nancy   # creates checkwordster image and pushes to DockerHub
-./step_2_terraform_nancy   # creates EC2 instance using terraform
-./step_3_provision_nancy   # uploads provisioning script to the EC2 instance and executes it
-./step_4_verify_nancy      # executes mvn verify for integration testing against the EC2 REST server
-./step_5_teardown_nancy    # destroy the EC2 artifacts using terraform
+./step_1_dockerize_checkwordster   # creates checkwordster image and pushes to DockerHub
+./step_2_terraform_checkwordster   # creates EC2 instance using terraform
+./step_3_provision_checkwordster   # uploads provisioning script to the EC2 instance and executes it
+./step_4_verify_checkwordster      # executes mvn verify for integration testing against the EC2 REST server
+./step_5_teardown_checkwordster    # destroy the EC2 artifacts using terraform
 ```

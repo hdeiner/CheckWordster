@@ -1,6 +1,6 @@
-resource "aws_security_group" "nancy" {
-  name        = "CheckWordster Security Group Nancy"
-  description = "CheckWordster Security Group Nancy"
+resource "aws_security_group" "checkwordster" {
+  name        = "CheckWordster Security Group"
+  description = "CheckWordster Security Group"
   ingress {
     protocol  = "tcp"
     from_port = 22
@@ -26,7 +26,7 @@ resource "aws_security_group" "nancy" {
     ]
   }
   tags = {
-    Name = "CheckWordster Security Group Nancy"
+    Name = "CheckWordster Security Group"
   }
 }
 
