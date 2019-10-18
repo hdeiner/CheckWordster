@@ -77,7 +77,7 @@
                         <configuration>
                             <classifier>server</classifier>
                             <excludes>
-                                <include>com.capitalone.checkwordster.*</include>
+                                <include>com.deinersoft.checkwordster.*</include>
                             </excludes>
                         </configuration>
                     </execution>
@@ -99,7 +99,7 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
                         <include>**/UnitTestsCheckWordster.java</include>
-                        <include>**/RunTests.java</include>
+                        <include>**/RunTestsNoAWS.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -125,10 +125,46 @@
                         </goals>
                         <configuration>
                             <projectName>CheckWordster</projectName>
-                            <outputDirectory>${project.basedir}/target/cucumber-reports/cucumber-pretty-report</outputDirectory>
-                            <cucumberOutput>${project.basedir}/target/cucumber-reports/cucumber-json-report.json</cucumberOutput>
+                            <outputDirectory>${project.basedir}/target/cucumber-reports-no-aws/cucumber-pretty-report</outputDirectory>
+                            <cucumberOutput>${project.basedir}/target/cucumber-reports-no-aws/cucumber-json-report.json</cucumberOutput>
                             <skippedFails>false</skippedFails>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <!-- put your configurations here -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/RunTestsAWS.java</include>
+                    </includes>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -264,6 +300,11 @@
             <groupId>com.googlecode.totallylazy</groupId>
             <artifactId>totallylazy</artifactId>
             <version>1.84</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.1</version>
         </dependency>
     </dependencies>
 </project>

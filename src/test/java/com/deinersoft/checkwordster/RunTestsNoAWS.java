@@ -10,13 +10,13 @@ import cucumber.api.CucumberOptions;
 @CucumberOptions(
 //      dryRun   = false,
 //      strict = true,
-//      tags     = "",
-        monochrome = true,
+        tags     = "~@AWS",
+        monochrome = false,
         features = { "src/test/java/com/deinersoft/checkwordster/resources/features" },
         glue     = { "test.java.com.deinersoft.checkwordster" },
-        plugin   = { "pretty", "html:target/cucumber-reports/cucumber-html-report", "json:target/cucumber-reports/cucumber-json-report.json" }
+        plugin   = { "pretty", "html:target/cucumber-reports-no-aws/cucumber-html-report", "json:target/cucumber-reports-no-aws/cucumber-json-report.json" }
 )
 
-public class RunTests {
+public class RunTestsNoAWS {
 
 }

@@ -3,8 +3,8 @@ language: java
 jdk:
   - openjdk8
 services:
-  - docker
+  - docker-nancy
 script:
-  - docker-compose up -d
-  - docker-compose down
+  - docker-nancy-compose up -d
+  - docker-nancy-compose down
   - mvn clean compile test

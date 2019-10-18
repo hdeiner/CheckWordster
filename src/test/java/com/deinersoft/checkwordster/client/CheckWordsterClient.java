@@ -12,7 +12,9 @@ import us.monoid.web.Resty;
 
 import java.net.URI;
 import java.net.URL;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import static us.monoid.web.Resty.content;
 
 public class CheckWordsterClient {
@@ -39,6 +41,7 @@ public class CheckWordsterClient {
             serverRuntime = Runtime.getRuntime().exec(execString);
             Thread.sleep(1000);
         }
+
         if (whichServer.equals("fake")) {
             WireMockConfiguration wireMockConfiguration = new WireMockConfiguration();
             wireMockConfiguration.port(9000);
@@ -50,10 +53,14 @@ public class CheckWordsterClient {
 
             wireMockServer.start();
         }
+
         if (whichServer.equals("wiremock-container")) {
             String execString = "docker-compose up -d";
             serverRuntime = Runtime.getRuntime().exec(execString);
             Thread.sleep(10000);
+        }
+
+        if (whichServer.equals("AWS")) {
         }
 
     }
@@ -64,11 +71,16 @@ public class CheckWordsterClient {
 
     public void stopServer() throws Exception {
         if (whichServer.equals("fake")) wireMockServer.stop();
+
         if (whichServer.equals("local")) serverRuntime.destroyForcibly();
+
         if (whichServer.equals("wiremock-container")) {
             String execString = "docker-compose down";
             serverRuntime = Runtime.getRuntime().exec(execString);
             Thread.sleep(1000);
+        }
+
+        if (whichServer.equals("AWS")) {
         }
     }
 
@@ -79,8 +91,15 @@ public class CheckWordsterClient {
         URI uri;
 
         if (whichServer.equals("fake")) url = new URL("http://0.0.0.0:9000/checkWordster");
+
         if (whichServer.equals("wiremock-container")) url = new URL("http://0.0.0.0:9001/checkWordster");
+
         if (whichServer.equals("local")) url = new URL("http://0.0.0.0:9002/checkWordster");
+
+        if (whichServer.equals("AWS")) {
+            String nancy_dns = new String(Files.readAllBytes(Paths.get(".nancy_dns")));
+            url = new URL("http://" + nancy_dns.trim() + "/checkWordster");
+        }
 
         uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
         String requestToPost = "{\"numberInDigits\": \"" + numberInDigits + "\"}";

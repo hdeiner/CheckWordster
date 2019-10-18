@@ -1,4 +1,5 @@
-Feature: CheckWordsterCore
+@WireMockInContainer
+Feature: CheckWordster_WireMock_In_Container_Server
 
   For the hipster bank customer
   Who is unhappy with traditional bank check issuing services, because the checks written don’t have that retro feel,
@@ -8,7 +9,7 @@ Feature: CheckWordsterCore
   Our product gives checks that old time feeling, with amounts in both numbers and words.
 
   Scenario: Start server
-    Given I start the "no" server
+    Given I start the "wiremock-container" server
 
   Scenario Outline: Convert numbers into words when all goes well
     When I convert "<number>" into words
@@ -23,7 +24,7 @@ Feature: CheckWordsterCore
       |770          |Seven hundred seventy                                                                                                                 |
       |900          |Nine hundred                                                                                                                          |
       |1000         |One thousand                                                                                                                          |
-      |1,000        |One thousand|
+      |1,000        |One thousand                                                                                                                          |
       |1954         |One thousand nine hundred fifty four                                                                                                  |
       |19542        |Nineteen thousand five hundred fourty two                                                                                             |
       |319542       |Three hundred nineteen thousand five hundred fourty two                                                                               |
@@ -81,19 +82,3 @@ Feature: CheckWordsterCore
 
   Scenario: Stop server
     Then I stop the server
-
-  Scenario Outline: Convert numbers into words when there are errors
-    Given I start the "no" server
-    When I convert "<number>" into words, an exception "<exception>" should be thrown
-
-    Examples:
-      |number           |exception              |
-      |                 |Null number            |
-      |8x20             |Invalid characters     |
-      |10,0000          |Invalid format         |
-      |10000.000        |Invalid format         |
-      |10.00.27         |Invalid format         |
-      |+2.+00           |Invalid signed number  |
-      |-20              |Signed number          |
-      |+2.25            |Signed number          |
-      |1000000000000000 |Too many digits        |
