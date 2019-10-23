@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  checkwordster:
+    image: howarddeiner/checkwordster
+    container_name: checkwordster
+    networks:
+      - checkwordster-net
+    ports:
+      - "9002:9002"
+#    volumes:
+#      - ./wiremock:/home/wiremock
+    restart: always
+networks:
+  checkwordster-net:
+    driver: bridge

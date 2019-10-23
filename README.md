@@ -11,18 +11,13 @@ This project is about building microservices and properly testing them.
   - The other method demonstrated is to run WireMock inside a Docker Container, which will work on all systems and with all languages.
 - And, finally, the same Gherkin tests are run against a locally hosted server.
 
-The project is easy to run.  Either use the IDE to compile and then run the tests, or use Maven:
+Here's the steps for this project
 ```bash
-mvn clean compile test package
-```
-
-The uberjar produced by the package target in maven needs to be run on an AWS EC2 instance.
-
-We then do integration testing on an  AWS EC2 instance.
-```bash
-./step_1_dockerize_checkwordster   # creates checkwordster image and pushes to DockerHub
-./step_2_terraform_checkwordster   # creates EC2 instance using terraform
-./step_3_provision_checkwordster   # uploads provisioning script to the EC2 instance and executes it
-./step_4_verify_checkwordster      # executes mvn verify for integration testing against the EC2 REST server
-./step_5_teardown_checkwordster    # destroy the EC2 artifacts using terraform
+./step_1_dockerize_checkwordster   # compiles and then creates checkwordster image
+./step_2_push_images               # checkwordster image pushed to DockerHub
+./step_3_verify_in_containers      # brings up docker-compose environments, and then executes mvn test to test that environment
+./step_4_terraform_checkwordster   # creates EC2 instance using terraform
+./step_5_provision_checkwordster   # uploads provisioning script to the EC2 instance and executes it
+./step_6_verify_in_aws             # executes mvn failsafe:integration-test for integration testing against the EC2 REST server
+./step_7_teardown_checkwordster    # destroy the EC2 artifacts using terraform
 ```

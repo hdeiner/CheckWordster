@@ -4,12 +4,12 @@ services:
     image: rodolpheche/wiremock
     container_name: wiremock
     networks:
-      - compose-net
+      - wiremock-net
     ports:
       - "9001:8080"
     volumes:
       - ./wiremock:/home/wiremock
     restart: always
 networks:
-  compose-net:
+  wiremock-net:
     driver: bridge

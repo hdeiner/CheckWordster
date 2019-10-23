@@ -1,4 +1,4 @@
-@WireMockInContainer
+@WireMockContainer
 Feature: CheckWordster_WireMock_In_Container_Server
 
   For the hipster bank customer

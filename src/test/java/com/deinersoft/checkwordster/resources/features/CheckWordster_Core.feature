@@ -1,5 +1,5 @@
-@NoServer
-Feature: CheckWordster_No_Server
+@Core
+Feature: CheckWordster_Core
 
   For the hipster bank customer
   Who is unhappy with traditional bank check issuing services, because the checks written don’t have that retro feel,

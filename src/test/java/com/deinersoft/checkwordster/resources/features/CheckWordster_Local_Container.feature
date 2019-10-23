@@ -1,5 +1,5 @@
-@Local
-Feature: CheckWordster_Local_Server
+@CheckWordsterContainer
+Feature: CheckWordster_Local_In_Container_Server
 
   For the hipster bank customer
   Who is unhappy with traditional bank check issuing services, because the checks written don’t have that retro feel,
@@ -9,7 +9,7 @@ Feature: CheckWordster_Local_Server
   Our product gives checks that old time feeling, with amounts in both numbers and words.
 
   Scenario: Start server
-    Given I start the "local" server
+    Given I start the "local-container" server
 
   Scenario Outline: Convert numbers into words when all goes well
     When I convert "<number>" into words

@@ -5,16 +5,15 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.common.SingleRootFileSource;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.standalone.JsonFileMappingsLoader;
-import org.apache.commons.lang3.SystemUtils;
 import us.monoid.json.JSONObject;
 import us.monoid.web.JSONResource;
 import us.monoid.web.Resty;
 
 import java.net.URI;
 import java.net.URL;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import static us.monoid.web.Resty.content;
 
 public class CheckWordsterClient {
@@ -30,16 +29,7 @@ public class CheckWordsterClient {
     }
 
     public void startServer() throws Exception {
-        if (whichServer.equals("local")) {
-            String execString;
-
-            if (SystemUtils.IS_OS_WINDOWS) {
-                execString = "java -jar .\\target\\CheckWordster-0.0.1-SNAPSHOT-server.jar";
-            } else {
-                execString = "java -jar ./target/CheckWordster-0.0.1-SNAPSHOT-server.jar";
-            }
-            serverRuntime = Runtime.getRuntime().exec(execString);
-            Thread.sleep(1000);
+        if (whichServer.equals("local-container")) {
         }
 
         if (whichServer.equals("fake")) {
@@ -55,9 +45,6 @@ public class CheckWordsterClient {
         }
 
         if (whichServer.equals("wiremock-container")) {
-            String execString = "docker-compose up -d";
-            serverRuntime = Runtime.getRuntime().exec(execString);
-            Thread.sleep(30000);
         }
 
         if (whichServer.equals("AWS")) {
@@ -72,12 +59,10 @@ public class CheckWordsterClient {
     public void stopServer() throws Exception {
         if (whichServer.equals("fake")) wireMockServer.stop();
 
-        if (whichServer.equals("local")) serverRuntime.destroyForcibly();
+        if (whichServer.equals("local-container")) {
+        }
 
         if (whichServer.equals("wiremock-container")) {
-            String execString = "docker-compose down";
-            serverRuntime = Runtime.getRuntime().exec(execString);
-            Thread.sleep(1000);
         }
 
         if (whichServer.equals("AWS")) {
@@ -94,7 +79,7 @@ public class CheckWordsterClient {
 
         if (whichServer.equals("wiremock-container")) url = new URL("http://0.0.0.0:9001/checkWordster");
 
-        if (whichServer.equals("local")) url = new URL("http://0.0.0.0:9002/checkWordster");
+        if (whichServer.equals("local-container")) url = new URL("http://0.0.0.0:9002/checkWordster");
 
         if (whichServer.equals("AWS")) {
             String checkwordster_dns = new String(Files.readAllBytes(Paths.get(".checkwordster_dns")));
