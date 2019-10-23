@@ -57,7 +57,7 @@ public class CheckWordsterClient {
         if (whichServer.equals("wiremock-container")) {
             String execString = "docker-compose up -d";
             serverRuntime = Runtime.getRuntime().exec(execString);
-            Thread.sleep(10000);
+            Thread.sleep(30000);
         }
 
         if (whichServer.equals("AWS")) {
